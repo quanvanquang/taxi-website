@@ -3,125 +3,281 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dịch vụ Taxi Nhanh</title>
+  <title>Taxi Đồ Sơn</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --main-color: #f1c40f;
+      --dark-color: #2c3e50;
+      --light-gray: #f9f9f9;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--light-gray);
       color: #333;
     }
 
     header {
-      background-color: #f9c10b;
+      background: linear-gradient(to right, #f1c40f, #f39c12);
       padding: 20px;
       text-align: center;
-      color: #000;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 32px;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     nav {
-      background: #333;
-      text-align: center;
+      background: var(--dark-color);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px 0;
     }
 
     nav a {
-      display: inline-block;
-      padding: 14px 20px;
       color: white;
       text-decoration: none;
+      margin: 10px 15px;
+      font-weight: bold;
+      position: relative;
     }
 
-    nav a:hover {
-      background: #555;
+    nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 3px;
+      background: var(--main-color);
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     .container {
-      padding: 20px;
       max-width: 1000px;
-      margin: auto;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    .contact-form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    section {
+      margin-bottom: 50px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
-    .contact-form input, .contact-form textarea {
+    h2 {
+      color: #e67e22;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+    }
+
+    th {
+      background: #f1c40f;
+    }
+
+    input, select, textarea, button {
       width: 100%;
       padding: 12px;
-      margin-bottom: 10px;
+      margin-top: 10px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 16px;
     }
 
-    .contact-form button {
-      background: #f9c10b;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
+    button {
+      background-color: #f1c40f;
+      color: #333;
       font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .contact-form button:hover {
-      background: #e8b000;
+    button:hover {
+      background-color: #e0b000;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .floating-buttons {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .floating-buttons a {
+      width: 50px;
+      height: 50px;
+      background: #0084ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .floating-buttons a:hover {
+      transform: scale(1.1);
+    }
+
+    .floating-buttons img {
+      width: 28px;
+      height: 28px;
     }
 
     footer {
-      background: #222;
+      background: #2c3e50;
       color: #ccc;
       text-align: center;
       padding: 20px;
-      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+
+      .floating-buttons a {
+        width: 45px;
+        height: 45px;
+      }
+
+      .floating-buttons img {
+        width: 24px;
+        height: 24px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Taxi Nhanh 24/7</h1>
-  <p>Dịch vụ taxi chuyên nghiệp - An toàn - Nhanh chóng</p>
+  <h1>Taxi Đồ Sơn</h1>
+  <p>Dịch vụ taxi nhanh chóng - an toàn - uy tín</p>
 </header>
 
 <nav>
-  <a href="#home">Trang chủ</a>
-  <a href="#about">Giới thiệu</a>
-  <a href="#contact">Liên hệ</a>
+  <a href="#gioithieu">Giới thiệu</a>
+  <a href="#dichvu">Dịch vụ</a>
+  <a href="#banggia">Bảng giá</a>
+  <a href="#datxe">Đặt xe</a>
+  <a href="#lienhe">Liên hệ</a>
 </nav>
 
-<div class="container" id="home">
-  <h2>Chào mừng bạn đến với Taxi Nhanh!</h2>
-  <p>Chúng tôi cung cấp dịch vụ taxi 24/7 tại thành phố bạn. Đặt xe nhanh chóng, giá cả minh bạch, tài xế thân thiện và chuyên nghiệp.</p>
-</div>
+<div class="container">
+  <section id="gioithieu">
+    <h2>Giới thiệu</h2>
+    <p>Taxi Đồ Sơn là dịch vụ taxi chuyên nghiệp, phục vụ 24/7 tại khu vực TP.HCM và các tỉnh lân cận. Chúng tôi mang đến trải nghiệm an toàn, tiện lợi và chi phí hợp lý.</p>
+  </section>
 
-<div class="container" id="about">
-  <h2>Giới thiệu</h2>
-  <p>Taxi Nhanh đã hoạt động hơn 10 năm, phục vụ hàng ngàn lượt khách mỗi tháng. Chúng tôi luôn đặt sự an toàn và hài lòng của khách hàng lên hàng đầu.</p>
-</div>
+  <section id="dichvu">
+    <h2>Dịch vụ</h2>
+    <ul>
+      <li>Taxi 4 và 7 chỗ đời mới</li>
+      <li>Đưa đón sân bay, bệnh viện, trung tâm thương mại</li>
+      <li>Giao hàng nhanh</li>
+      <li>Thuê xe theo giờ / ngày</li>
+    </ul>
+  </section>
 
-<div class="container" id="contact">
-  <h2>Liên hệ với chúng tôi</h2>
-  <div class="contact-form">
-    <form action="#" method="post">
-      <input type="text" name="name" placeholder="Họ và tên" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="tel" name="phone" placeholder="Số điện thoại">
-      <textarea name="message" rows="5" placeholder="Nội dung tin nhắn..." required></textarea>
-      <button type="submit">Gửi liên hệ</button>
+  <section id="banggia">
+    <h2>Bảng giá</h2>
+    <table>
+      <thead>
+        <tr><th>Dịch vụ</th><th>Giá khởi điểm</th><th>Giá/km</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Taxi 4 chỗ</td><td>15.000đ</td><td>11.000đ</td></tr>
+        <tr><td>Taxi 7 chỗ</td><td>17.000đ</td><td>13.000đ</td></tr>
+        <tr><td>Đưa đón sân bay</td><td>200.000đ</td><td>-</td></tr>
+        <tr><td>Thuê theo giờ</td><td>150.000đ</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="datxe">
+    <h2>Đặt xe nhanh</h2>
+    <form>
+      <label>Họ tên:</label>
+      <input type="text" placeholder="Nguyễn Văn A" required>
+
+      <label>Số điện thoại:</label>
+      <input type="tel" placeholder="0123 456 789" required>
+
+      <label>Địa điểm đón:</label>
+      <input type="text" placeholder="123 Lê Lợi, Q.1" required>
+
+      <label>Ghi chú:</label>
+      <textarea rows="3" placeholder="Ghi chú thêm (nếu có)"></textarea>
+
+      <button type="submit">Gửi yêu cầu</button>
     </form>
-  </div>
+  </section>
+
+  <section id="lienhe">
+    <h2>Liên hệ</h2>
+    <p><strong>Hotline:</strong> <a href="tel:0988123456">0988 123 456</a></p>
+    <p><strong>Email:</strong> taxiantam@gmail.com</p>
+    <p><strong>Địa chỉ:</strong> 123 Đường Lớn, Quận 1, TP.HCM</p>
+
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.409027586429!2d106.70042471474982!3d10.776891192322132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3e66efc4df%3A0x6f1a5e1a48a6c99!2zMTIzIEzDqiBM4buRaSwgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBHaeG6pXkgxJDDoCwgSOG7kyBDaMOtbmggTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1686738234748!5m2!1svi!2s"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+</div>
+
+<!-- Nút nổi gọi/Zalo/Facebook -->
+<div class="floating-buttons">
+  <a href="tel:0988123456" title="Gọi nhanh">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/phone.png" alt="Call">
+  </a>
+  <a href="https://zalo.me/0988123456" title="Zalo">
+    <img src="https://img.icons8.com/color/48/000000/zalo.png" alt="Zalo">
+  </a>
+  <a href="https://m.me/taxiantam" title="Facebook Messenger">
+    <img src="https://img.icons8.com/color/48/000000/facebook-messenger.png" alt="Messenger">
+  </a>
 </div>
 
 <footer>
-  <p>&copy; 2025 Taxi Nhanh. Hotline: 0123 456 789 | Email: taxi@nhanh.vn</p>
+  &copy; 2025 Taxi Đồ Sơn. Thiết kế bởi chính bạn!
 </footer>
 
 </body>
